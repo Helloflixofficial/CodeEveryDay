@@ -1,2 +1,1 @@
-# CPPDATA
-Some Random Codes
+# Programming Assignment Little Lemon Receipt Maker
