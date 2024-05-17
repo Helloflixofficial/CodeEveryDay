@@ -252,6 +252,10 @@ For changing Your URL that already exiest
 ```
 git remote --verbose
 ```
+
+```
+git commit --date="YYYY-MM-DD HH:MM:SS" -m "Your commit message"
+```
 How to run rebase interactively in Git:
 You can run git rebase interactively using the -i flag.
 It will open the editor and present a set of commands you can use.
