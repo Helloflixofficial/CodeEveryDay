@@ -1,1 +1,1 @@
-DATA BASE =   (  https://github.com/importcjj/mobc/issues/63  )   The latest 0.8.1 release fixes this.    { Prisama }
+DATA BASE =   (  https://github.com/prisma/prisma/issues/7120 )   The latest 0.8.1 release fixes this.    { Prisama }
