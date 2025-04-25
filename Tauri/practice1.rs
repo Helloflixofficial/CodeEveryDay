@@ -32,3 +32,22 @@ fn is_palindrome(s: &str) -> bool {
     filtered == filtered.chars().rev().collect::<String>()
 }
 
+
+fn longest_palindrome(s: &str) -> i32 {
+    let map = freq_map(s);
+    let mut len = 0;
+    let mut odd_found = false;
+    for &val in map.values() {
+        len += val / 2 * 2;
+        if val % 2 == 1 {
+            odd_found = true;
+        }
+    }
+    len + if odd_found { 1 } else { 0 }
+}
+
+fn main() {
+    println!("{}", longest_palindrome("abccccdd"));
+}
+
+
