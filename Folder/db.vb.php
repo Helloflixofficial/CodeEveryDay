@@ -42,3 +42,41 @@ Module InsertRecordExample
         Console.ReadLine()
     End Sub
 End Module
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Module ArrayExample
+    Sub Main()
+        Dim numbers() As Integer = {12, 45, 67, 3, 89, 22}
+        Dim max As Integer = numbers(0)
+        Dim min As Integer = numbers(0)
+
+        For Each num As Integer In numbers
+          
+            If num > max Then
+                max = num
+                
+                
+            End If
+            If num < min Then
+                min = num
+                
+            End If
+        Next
+        Console.WriteLine("Maximum element: " & max)
+        Console.WriteLine("Minimum element: " & min)
+    End Sub
+End Module
+
