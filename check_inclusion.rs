@@ -16,6 +16,29 @@ impl Solution {
             count1[(ch - b'a') as usize] += 1;
         }
 
+          let mut count2 = [0; 26];
+        for ch in s2.bytes().take(len1) {
+            count2[(ch - b'a') as usize] += 1;
+        }
+
+        if count1 == count2 {
+            return true;
+        }
+
+        for i in len1..len2 {
+            let add = s2.as_bytes()[i];
+            let remove = s2.as_bytes()[i - len1];
+
+            count2[(add - b'a') as usize] += 1;
+            count2[(remove - b'a') as usize] -= 1;
+
+            if count1 == count2 {
+                return true;
+            }
+        }
+
+        false
+    }
 
 
       
