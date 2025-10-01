@@ -1,0 +1,217 @@
+import { useState } from "react";
+import { Monitor, Moon, Sun, Bell, Shield, Download, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
+
+const Settings = () => {
+  const [theme, setTheme] = useState("dark");
+  const [notifications, setNotifications] = useState(true);
+  const [autoplay, setAutoplay] = useState(false);
+  const [quality, setQuality] = useState("1080p");
+  const [volume, setVolume] = useState([80]);
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-glow mb-4">Settings</h1>
+        <p className="text-muted-foreground">
+          Customize your AnimixPlay experience
+        </p>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Appearance Settings */}
+        <Card className="anime-card">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Monitor className="h-5 w-5 mr-2 text-primary" />
+              Appearance
+            </CardTitle>
+            <CardDescription>
+              Customize the look and feel of the app
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium">Theme</label>
+                <p className="text-sm text-muted-foreground">Choose your preferred theme</p>
+              </div>
+              <Select value={theme} onValueChange={setTheme}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">
+                    <div className="flex items-center">
+                      <Sun className="h-4 w-4 mr-2" />
+                      Light
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="dark">
+                    <div className="flex items-center">
+                      <Moon className="h-4 w-4 mr-2" />
+                      Dark
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium">Language</label>
+                <p className="text-sm text-muted-foreground">Select your preferred language</p>
+              </div>
+              <Select defaultValue="en">
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="en">English</SelectItem>
+                  <SelectItem value="ja">日本語</SelectItem>
+                  <SelectItem value="es">Español</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Playback Settings */}
+        <Card className="anime-card">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Monitor className="h-5 w-5 mr-2 text-primary" />
+              Playback
+            </CardTitle>
+            <CardDescription>
+              Configure video playback preferences
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium">Autoplay Next Episode</label>
+                <p className="text-sm text-muted-foreground">Automatically play the next episode</p>
+              </div>
+              <Switch checked={autoplay} onCheckedChange={setAutoplay} />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium">Default Quality</label>
+                <p className="text-sm text-muted-foreground">Preferred video quality</p>
+              </div>
+              <Select value={quality} onValueChange={setQuality}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="480p">480p</SelectItem>
+                  <SelectItem value="720p">720p</SelectItem>
+                  <SelectItem value="1080p">1080p</SelectItem>
+                  <SelectItem value="auto">Auto</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div>
+              <label className="text-sm font-medium mb-2 block">Default Volume</label>
+              <Slider
+                value={volume}
+                onValueChange={setVolume}
+                max={100}
+                step={5}
+                className="w-full"
+              />
+              <p className="text-sm text-muted-foreground mt-1">{volume[0]}%</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Notification Settings */}
+        <Card className="anime-card">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Bell className="h-5 w-5 mr-2 text-primary" />
+              Notifications
+            </CardTitle>
+            <CardDescription>
+              Manage your notification preferences
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium">Push Notifications</label>
+                <p className="text-sm text-muted-foreground">Receive notifications for new episodes</p>
+              </div>
+              <Switch checked={notifications} onCheckedChange={setNotifications} />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium">Email Updates</label>
+                <p className="text-sm text-muted-foreground">Weekly newsletter and updates</p>
+              </div>
+              <Switch defaultChecked />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div>
+                <label className="text-sm font-medium">Community Notifications</label>
+                <p className="text-sm text-muted-foreground">Updates from Discord and social media</p>
+              </div>
+              <Switch />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Privacy & Security */}
+        <Card className="anime-card">
+          <CardHeader>
+            <CardTitle className="flex items-center">
+              <Shield className="h-5 w-5 mr-2 text-primary" />
+              Privacy & Security
+            </CardTitle>
+            <CardDescription>
+              Control your privacy and security settings
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Button variant="outline" className="w-full justify-start">
+              <Shield className="h-4 w-4 mr-2" />
+              Change Password
+            </Button>
+            
+            <Button variant="outline" className="w-full justify-start">
+              <Download className="h-4 w-4 mr-2" />
+              Export Watch History
+            </Button>
+            
+            <Button variant="outline" className="w-full justify-start">
+              <Globe className="h-4 w-4 mr-2" />
+              Privacy Policy
+            </Button>
+            
+            <Button variant="destructive" className="w-full justify-start">
+              Clear All Data
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Save Button */}
+      <div className="mt-8 flex justify-center">
+        <Button size="lg" className="glow-effect px-8">
+          Save Changes
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default Settings;
